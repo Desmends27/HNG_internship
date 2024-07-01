@@ -1,5 +1,8 @@
 import requests
 from flask import Flask, request, jsonify
+import os
+from dotenv import load_dotenv, dotenv_values 
+load_dotenv() 
 """ Returns an api response  with user name, ip and temperature """
 
 app = Flask(__name__)
@@ -11,8 +14,19 @@ def hello():
 
     client_ip = request.remote_addr
     ip_info_url = f"http://ip-api.com/json/{client_ip}"
+    #Request for ip address
     try:
         response = requests.get(ip_info_url).json()
+    except requests.RequestException as e:
+        return jsonify({"error": "Could not retrieve location data"}), 500
+    location = response["city"]
+
+    # Request for temperature
+    try:
+        payload = {'apikey': os.getenv('API_KEY'), 'location': location}
+        headers = {"accept": "application/json"}
+        url = "https://api.tomorrow.io/v4/weather/realtime"
+        response = request.get(url, headers=headers, params=payload)
     except requests.RequestException as e:
         return jsonify({"error": "Could not retrieve location data"}), 500
     
