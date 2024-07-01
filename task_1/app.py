@@ -1,9 +1,12 @@
 import requests
-from flask import Flask, request
+from flask import Flask, request, jsonify
 """ Returns an api response  with user name, ip and temperature """
 
 app = Flask(__name__)
 
+@app.route("/")
+def index():
+    return "Hello"
 @app.route("/api/hello", methods=['GET'])
 def hello():
     """ main api endpoint for request """
