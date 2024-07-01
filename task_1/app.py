@@ -26,7 +26,7 @@ def hello():
         payload = {'apikey': os.getenv('API_KEY'), 'location': location}
         headers = {"accept": "application/json"}
         url = "https://api.tomorrow.io/v4/weather/realtime"
-        response = request.get(url, headers=headers, params=payload).json()
+        response = requests.get(url, headers=headers, params=payload).json()
     except requests.RequestException as e:
         return jsonify({"error": "Could not retrieve location data"}), 500
     
