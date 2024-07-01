@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route("/api/hello", methods=['GET'])
 def hello():
     """ main api endpoint for request """
-     username = request.args.get('visitor_name', 'visitor').strip('"')
+    username = request.args.get('visitor_name', 'visitor').strip('"')
 
     client_ip = request.remote_addr
     ip_info_url = f"http://ip-api.com/json/{client_ip}"
