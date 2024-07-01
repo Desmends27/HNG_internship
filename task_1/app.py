@@ -4,17 +4,20 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return "Hello"
-
 @app.route("/api/hello", methods=['GET'])
 def hello():
     """ main api endpoint for request """
     username = request.args.get('visitor_name')
 
     client_ip = request.remote_addr
-    return (client_ip)
+    ip_info_url = f"http://ip-api.com/json/{client_ip}"
+    try:
+        response = requests.get(ip_info_url).json()
+    except requests.RequestException as e:
+        return jsonify({"error": "Could not retrieve location data"}), 500
+    
+    return (response)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
