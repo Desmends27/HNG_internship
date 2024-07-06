@@ -154,3 +154,6 @@ AUTH_USER_MODEL = 'user.CustomUser'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
+STATICFILES_DIRS = [BASE_DIR/'static',]
+STATIC_ROOT = BASE_DIR/'staticfiles'
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
