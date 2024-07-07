@@ -21,7 +21,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
     
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    userId = models.CharField(max_length=255, unique=True)
+    userId = models.CharField(max_length=255, unique=True, primary_key=True)
     firstName = models.CharField(max_length=255, null=False)
     lastName = models.CharField(max_length=255, null=False)
     email = models.EmailField(unique=True, null=False)
@@ -39,7 +39,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 class Organisation(models.Model):
-    orgId = models.CharField(max_length=255, unique=True)
+    orgId = models.CharField(max_length=255, unique=True, primary_key=True)
     name = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField(blank=True, null=True)
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='organisations')
