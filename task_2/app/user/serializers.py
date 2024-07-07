@@ -30,7 +30,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
         org = Organisation.objects.create(
             name=organisation_name, created_by=user)
         org.save()
-        print('oragnaization created')
         return user
     
     def update(self, instance, validated_data):
