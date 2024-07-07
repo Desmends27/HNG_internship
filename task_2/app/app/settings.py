@@ -32,8 +32,8 @@ SECRET_KEY = 'django-insecure-+--n3sd%8*!v9(00aw=91v=2#@r6mst9wq&w%v0k#@8jn^=e&f
 
 # SECURITY WARNING: don't run with debug turned on in production
 
-ALLOWED_HOSTS = ['hng-internship-fjsy.vercel.app']
-
+ALLOWED_HOSTS = []
+#'hng-internship-fjsy.vercel.app', '127.0.0.1'
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'user'
+    'authentication'
 ]
 
 MIDDLEWARE = [
@@ -147,8 +147,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'user.CustomUser'
+AUTH_USER_MODEL = 'authentication.CustomUser'
 
 AUTHENTICATION_BACKENDS = [
+    'authentication.backends.EmailAuth',
     'django.contrib.auth.backends.ModelBackend'
 ]
+
+DEBUG=True
+from rest_framework_simplejwt.settings import api_settings
+
+api_settings.USER_ID_FIELD = 'userId'
+api_settings.USER_ID_CLAIM = 'user_id'
