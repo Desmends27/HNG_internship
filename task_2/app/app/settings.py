@@ -154,7 +154,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
-DEBUG=True
+
 from rest_framework_simplejwt.settings import api_settings
 
 api_settings.USER_ID_FIELD = 'userId'
