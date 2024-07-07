@@ -30,10 +30,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-+--n3sd%8*!v9(00aw=91v=2#@r6mst9wq&w%v0k#@8jn^=e&f'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# SECURITY WARNING: don't run with debug turned on in production
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []hng-internship-fjsy-7ynyx58uf-desmends27s-projects.vercel.app
 
 
 # Application definition
